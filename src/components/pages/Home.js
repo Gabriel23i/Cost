@@ -6,7 +6,7 @@ import LinkButton from '../layout/LinkButton'
 function Home(){
     return (
         <section className={style.home_container}>
-            <h1>Bem-vindo ao <span>Cost</span></h1>
+            <h1>Bem-vindo ao <span>Cost Manager</span></h1>
             <p>Comece a gerenciar os seus projetos agora mesmo!</p>
             <LinkButton to="/newproject" text="Criar Projeto"/>
             <img src={savings} alt="Cost"/>
