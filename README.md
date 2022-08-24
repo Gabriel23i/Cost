@@ -30,7 +30,7 @@ Cost is a project manager. In it we can create, edit and delete projects, and in
 >Data base alocated projects and services
 
 <details>
-<summary><b>Features in developement</b></summary>
+<summary><b>Features in developement 🛠️ </b></summary>
 </br>
 
 >Edit services
@@ -66,7 +66,7 @@ Cost is a project manager. In it we can create, edit and delete projects, and in
 ## :construction_worker: How to use
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#### :warning: Prerequisites
+#### Prerequisites :warning:
 <table border="1">
   <tr>
     <td>NodeJS</td>
@@ -86,10 +86,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   </tr>
 </table>
 
-#### ![github](https://user-images.githubusercontent.com/83414433/186276983-84b59775-7cd6-4714-b3f6-0c1b49d8266a.png) Here in the Github
+#### Here in the Github ![github](https://user-images.githubusercontent.com/83414433/186276983-84b59775-7cd6-4714-b3f6-0c1b49d8266a.png)
 1. Copy this command `git clone https://github.com/Gabriel23i/cost-manager.git`
 
-#### 🖥️ On your machine
+#### On your machine 🖥️
 
 2. Open the terminal and run the command copied from Github
 
@@ -107,4 +107,25 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     
         *  Open [http://localhost:3000](http://localhost:3000) to view the project in your browser
 
-## Considerations finalized
+## 💬 Considerations Finalized 
+>Main technologies applied in this project: React, React Router Dom, Hooks, Metodos HTTP, API REST, CRUD.
+
+<details open="true">
+<summary><b>Front-End <img width="18" src="https://user-images.githubusercontent.com/83414433/186509918-15d2b0ee-0c24-47cd-a954-3bbfcafc5218.png" alt="representação_front_end"/></b></summary>
+I used hooks to deal with the life cycle of the components and make the change of state to change the data presented on the page, in that brief moment a "Component Loading" is displayed as a visual feedback to the user, thus respecting the concept of SPA, which should update page data without "Page Reload", providing the user with a fluid experience.
+With forms I worked with data manipulation and validation. I made asynchronous requests to the backend to save, get, update and delete data, using the main HTTP verbs.
+</details>
+
+<details open="true">
+<summary><b>Back-End 
+<img width="18" src="https://user-images.githubusercontent.com/83414433/186509433-6ade5362-0547-4766-8562-e72997b748b2.png" alt="representação_back_end"/></b></summary>
+I used the Json-Server library, which is succinctly a simulation of a REST API with a Database, where I worked on the CRUD implementation.
+</details>
+
+<details open="true">
+<summary><b>Product <img src="https://user-images.githubusercontent.com/83414433/186297373-4e23e552-3ca6-4b48-998d-8399b77b4791.png" alt="imagem_project_cost" width="18"/></b></summary>
+I carried out the implementation of business rules, one of them being: The Project has a budget to be followed, allowing the addition of services for the conclusion of the project, as long as the services do not exceed the value determined in the budget.
+</details>
+
+>Last, but not least, I want to express my sincere thanks to Matheus Battisti, he is the creator of [Curso React](https://www.youtube.com/playlist?list=PLnDvRpP8BneyVA0SZ2okm-QBojomniQVO), which teaches in practice concepts, fundamentals and creation of projects in React. </br>
+>Thanks [Matheus](https://github.com/matheusbattisti/), you are a very capable Dev and master the art of teaching!
