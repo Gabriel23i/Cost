@@ -15,6 +15,11 @@
     margin: 0 1em;
 }
 
+.social_list svg {
+    width: 2em;
+    height: 2em;
+}
+
 .social_list li:hover {
     color: #ffbb33;
 }

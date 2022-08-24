@@ -7,13 +7,13 @@ function Footer(){
         <footer className={style.footer}>
             <ul className={style.social_list}>
                 <li>
-                    <FaFacebook/>
+                    <FaFacebook />
                 </li>
                 <li>
-                    <FaInstagram/>
+                    <FaInstagram />
                 </li>
                 <li>
-                    <FaLinkedin/>
+                    <FaLinkedin />
                 </li>
             </ul>
             <p className={style.copy_right}>
