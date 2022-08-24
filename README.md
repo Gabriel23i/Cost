@@ -33,32 +33,32 @@ Cost is a project manager. In it we can create, edit and delete projects, and in
 <summary><b>Features in developement 🛠️ </b></summary>
 </br>
 
+>Layout responsive
+
 >Edit services
 
 >Search for added services
 
 >Search for added projects
 
->Layout responsive
-
 </details>
 
 ## :rocket: Technologies Used
 <table border="1">
   <tr>
-    <td>Json Server</td>
     <td>Javascript</td>
     <td>React</td>
     <td>React Icons</td>
     <td>React Router Dom</td>
+    <td>Json Server</td>
     <td>Uuid</td>
   </tr>
   <tr>
-    <td>0.17</td>
     <td>ECM</td>
     <td>18.2</td>
     <td>4.4</td>
     <td>6.3</td>
+    <td>0.17</td>
     <td>8.3</td>
   </tr>
 </table>
