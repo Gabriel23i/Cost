@@ -9,6 +9,8 @@
 ## :page_facing_up: About
 Cost is a project manager. In it we can create, edit and delete projects, and in the creation we define a total budget and later we have the possibility of allocating services that are fundamental for its execution, thus, we have in hand the control of the expenses that this project can generate until it is completed.
 
+> Status: Developing :warning:
+
 ## :gear: Functionalities
 
 >Management of all projects
