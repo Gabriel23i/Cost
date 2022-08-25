@@ -16,3 +16,10 @@
     background-color: #fff;
     border-radius: 5px;
 }
+
+.form_control span {
+    font-size: 14px;
+    margin-top: 0.25rem;
+    margin-left: 0.68rem;
+    color: #FF0000;
+}

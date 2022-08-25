@@ -19,3 +19,10 @@
 .form_control input::placeholder {
     color: #7b7b7b;
 }
+
+.form_control span {
+    font-size: 14px;
+    margin-top: 0.25rem;
+    margin-left: 0.68rem;
+    color: #FF0000;
+}

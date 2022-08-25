@@ -13,7 +13,9 @@ function Footer(){
                     <FaInstagram />
                 </li>
                 <li>
-                    <FaLinkedin />
+                    <a target="_blank" href='https://www.linkedin.com/in/gabriel-santos-23352a20a/'>
+                        <FaLinkedin />
+                    </a>
                 </li>
             </ul>
             <p className={style.copy_right}>

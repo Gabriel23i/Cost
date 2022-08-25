@@ -1,14 +1,48 @@
 import { useEffect, useState } from 'react'
 
+import { useFormik } from "formik"
+import { registerSchema } from "../../schema/register"
+
 import Input from '../form/Input'
 import Select from '../form/Select'
 import SubmitButton from '../form/SubmitButton'
 
+
+import { useNavigate } from 'react-router-dom'
+
 import style from './ProjectForm.module.css'
 
-function ProjectForm({ handleSubmit, btnText, projectData  }){
+function ProjectForm({ projectData }){
     const [categories, setCategories] = useState([])
-    const [project, setProject] = useState(projectData || {})
+    const navigate = useNavigate()
+
+    const formik = useFormik({
+        initialValues:{
+            name:'',
+            budget:'',
+            category:''
+        },
+        onSubmit:(values)=>{
+            const category = categories.find(categorie => categorie.id.toString() === values.category.toString())
+            values.category = category
+            values.cost = 0
+            values.services=[]
+
+            fetch("http://localhost:5000/projects",{
+                method:"POST",
+                headers:{
+                    "Content-type":"application/json",
+                },
+                body: JSON.stringify(values)
+            })
+            .then(data => {
+                // REDIRECT
+                navigate('/projects', { message: 'Projeto criado com sucesso!' })
+            })
+            .catch(error => console.error(error))
+        },
+        validationSchema:registerSchema
+    })
 
     useEffect(()=>{
         fetch('http://localhost:5000/categories', {
@@ -24,53 +58,36 @@ function ProjectForm({ handleSubmit, btnText, projectData  }){
         .catch(error => console.error(error))
     },[])
 
-    const submit = (e) => {
-        e.preventDefault()
-        handleSubmit(project)
-    }
-
-    // Essa função é importante, altera objeto de forma dinamica
-    function handleChange(e){
-        setProject({ ...project, [e.target.name]: e.target.value })
-    }
-
-    function handleCategory(e){
-        setProject({ ...project,
-            category: {
-                id:e.target.value,
-                name: e.target.options[e.target.selectedIndex].text
-            },
-        })
-    }
-
     return(
-        <form onSubmit={submit} className={style.form}>
-            <Input 
+        <form onSubmit={formik.handleSubmit} className={style.form}>
+            <Input
                 type="text"
                 text="Nome do projeto"
                 name="name"
                 placeholder="Insira o nome do projeto"
-                handleOnChange={handleChange}
-                value={project.name ? project.name : ''}
+                handleOnChange={formik.handleChange}
+                value={formik.values.name}
+                error={formik.errors.name && formik.touched.name && <>{formik.errors.name}</>}
             />
-            <Input 
+            <Input
                 type="number"
                 text="Orçamento do projeto"
                 name="budget"
                 placeholder="Insira o orçamento total"
-                handleOnChange={handleChange}
-                value={project.budget ? project.budget : ''}
+                handleOnChange={formik.handleChange}
+                value={formik.values.budget}
+                error={formik.errors.budget && formik.touched.budget && <>{formik.errors.budget}</>}
             />
-            <Select 
-                name="category_id"
+            <Select
+                name="category"
                 text="Selecione a categoria"
                 options={categories}
-                handleOnChange={handleCategory}
-                value={project.category ? project.category.id : ''}
+                handleOnChange={formik.handleChange}
+                value={formik.values.category}
+                error={formik.errors.category && formik.touched.category && <>{formik.errors.category}</>}
             />
-            <SubmitButton text={btnText}/>
+            <SubmitButton type='submit' text="Enviar" />
         </form>
-        
     )
 }
 
