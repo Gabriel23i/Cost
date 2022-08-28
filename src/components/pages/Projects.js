@@ -64,15 +64,17 @@ function Projects(){
 			{message && <Message type='success' msg={message}/>}
 			{projectMessage && <Message type='success' msg={projectMessage}/>}
       <Container customClass="start">
-        {projects.length > 0 && projects.map((project) =>(
-          <ProjectCard
-            key={project.id.toString()}
-            id={project.id}
-            name={project.name}
-            budget={project.budget}
-            category={project.category?.name}
-            handleRemove={removeProject}
-          />
+        {console.log('Projects: ',projects)}
+        {projects.length > 0 &&
+          projects.map((project) =>(
+            <ProjectCard
+              key={project.id}
+              id={project.id}
+              name={project.name}
+              budget={project.budget}
+              category={project.category}
+              handleRemove={removeProject}
+            />
         ))}
 		    {!removeLoading && <Loading />}
         {removeLoading && projects.length === 0 &&(

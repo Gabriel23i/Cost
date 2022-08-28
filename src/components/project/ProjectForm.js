@@ -12,19 +12,29 @@ import { useNavigate } from 'react-router-dom'
 
 import style from './ProjectForm.module.css'
 
-function ProjectForm({ projectData }){
+function ProjectForm({ projectData, btnText, handlePost }){
     const [categories, setCategories] = useState([])
+    const [project] = useState(projectData)
     const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues:{
-            name:'',
-            budget:'',
-            category:''
+            name:project ? project.name : '',
+            budget:project ? project.budget : '',
+            category:project ? project.category.name : ''
         },
         onSubmit:(values)=>{
+            console.log('values: ', values)
+            console.log('Form project: ', project)
+
+            
             const category = categories.find(categorie => categorie.id.toString() === values.category.toString())
             values.category = category
+            
+            if(projectData){
+                return handlePost(values)
+            } //Importante para edição do projeto!!!
+
             values.cost = 0
             values.services=[]
 
@@ -86,7 +96,7 @@ function ProjectForm({ projectData }){
                 value={formik.values.category}
                 error={formik.errors.category && formik.touched.category && <>{formik.errors.category}</>}
             />
-            <SubmitButton type='submit' text="Enviar" />
+            <SubmitButton text={btnText} />
         </form>
     )
 }

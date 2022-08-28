@@ -34,8 +34,7 @@ function Project(){
         },
       })
       .then(response => response.json())
-      .then(data =>{ 
-        console.log(data)
+      .then(data =>{
         setProject(data)
         setServices(data.services)
       })
@@ -44,17 +43,14 @@ function Project(){
   },[id])
 
   function editPost(project){
-    //budget validation
-
-
-    setMessage('') //correção de bug na mensagem
+    setMessage('')
     if(project.budget < project.cost){
       setMessage('O orçamento não pode ser menor que o custo do projeto!')
       setType('error')
       return false
     }
-    const ID = project.id
-    fetch(`http://localhost:5000/projects/${ID}`,{
+    
+    fetch(`http://localhost:5000/projects/${id}`,{
       method: "PATCH",
       headers:{
         "Content-Type":"application/json",
@@ -172,8 +168,9 @@ function Project(){
               </div>
             ) : (
               <div className={styles.project_info}>
+                {console.log(project.id)}
                 <ProjectForm
-                  handleSubmit={editPost}
+                  handlePost={editPost}
                   btnText="Concluir edição"
                   projectData={project}
                 />
@@ -215,10 +212,7 @@ function Project(){
           </Container>
         </Container>
       </div>
-      ) : (
-      <Loading />
-      )
-
+      ) : (<Loading />)
     }
     </>
   )
