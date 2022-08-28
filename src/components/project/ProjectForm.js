@@ -27,11 +27,14 @@ function ProjectForm({ projectData, btnText, handlePost }){
             console.log('values: ', values)
             console.log('Form project: ', project)
 
+
             
             const category = categories.find(categorie => categorie.id.toString() === values.category.toString())
             values.category = category
             
             if(projectData){
+                const { services } = project.services
+                values.services = services
                 return handlePost(values)
             } //Importante para edição do projeto!!!
 

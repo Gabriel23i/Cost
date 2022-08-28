@@ -64,7 +64,6 @@ function Projects(){
 			{message && <Message type='success' msg={message}/>}
 			{projectMessage && <Message type='success' msg={projectMessage}/>}
       <Container customClass="start">
-        {console.log('Projects: ',projects)}
         {projects.length > 0 &&
           projects.map((project) =>(
             <ProjectCard

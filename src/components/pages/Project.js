@@ -12,6 +12,7 @@ import ServiceCard from '../service/ServiceCard'
 
 
 import styles from './Project.module.css'
+import { toast } from 'react-toastify'
 
 function Project(){
 
@@ -43,6 +44,7 @@ function Project(){
   },[id])
 
   function editPost(project){
+    console.log('project edit: ', project)
     setMessage('')
     if(project.budget < project.cost){
       setMessage('O orçamento não pode ser menor que o custo do projeto!')
@@ -61,9 +63,9 @@ function Project(){
     .then(data => {
       setProject(data)
       setShowProjectForm(false)
-      setMessage('Projeto atualizado!')
-      setType('success')
-      console.log('edit')
+      // setMessage('Projeto atualizado!')
+      // setType('success')
+      toast.success('Projeto atualizado!')
     })
     .catch(error => console.error(error))
   }
@@ -81,8 +83,9 @@ function Project(){
 
     // maximum value validation
     if(newCost > parseFloat(project.budget)){
-      setMessage('Orçamento ultrapassado, verifique o valor do serviço')
-      setType('error')
+      toast.error('Orçamento ultrapassado, verifique o valor do serviço')
+      // setMessage('Orçamento ultrapassado, verifique o valor do serviço')
+      // setType('error')
       project.services.pop()
       return false
     }
@@ -145,7 +148,7 @@ function Project(){
     {project.name ? (
       <div className={styles.project_details}>
         <Container customClass="column">
-          {message && <Message type={type} msg={message} />}
+          {/* {message && <Message type={type} msg={message} />} */}
           <div className={styles.details_container}>
             <h1>Projeto: {project.name}</h1>
             <button
@@ -168,7 +171,6 @@ function Project(){
               </div>
             ) : (
               <div className={styles.project_info}>
-                {console.log(project.id)}
                 <ProjectForm
                   handlePost={editPost}
                   btnText="Concluir edição"
