@@ -11,6 +11,7 @@ import SubmitButton from '../form/SubmitButton'
 import { useNavigate } from 'react-router-dom'
 
 import style from './ProjectForm.module.css'
+import { toast } from 'react-toastify'
 
 function ProjectForm({ projectData, btnText, handlePost }){
     const [categories, setCategories] = useState([])
@@ -26,14 +27,15 @@ function ProjectForm({ projectData, btnText, handlePost }){
         onSubmit:(values)=>{
             console.log('values: ', values)
             console.log('Form project: ', project)
-
-
             
             const category = categories.find(categorie => categorie.id.toString() === values.category.toString())
             values.category = category
             
+            
             if(projectData){
-                const { services } = project.services
+                const cost = project.cost
+                const services  = project.services
+                values.cost = cost
                 values.services = services
                 return handlePost(values)
             } //Importante para edição do projeto!!!
@@ -50,9 +52,13 @@ function ProjectForm({ projectData, btnText, handlePost }){
             })
             .then(data => {
                 // REDIRECT
-                navigate('/projects', { message: 'Projeto criado com sucesso!' })
+                toast.success('Projeto criado com sucesso!')
+                navigate('/projects')
             })
-            .catch(error => console.error(error))
+            .catch(error =>{
+                toast.error('Erro ao tentar criar projeto.')
+                console.error(error)
+            })
         },
         validationSchema:registerSchema
     })
