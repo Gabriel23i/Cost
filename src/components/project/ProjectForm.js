@@ -25,20 +25,24 @@ function ProjectForm({ projectData, btnText, handlePost }){
             category:project ? project.category.name : ''
         },
         onSubmit:(values)=>{
-            console.log('values: ', values)
-            console.log('Form project: ', project)
-            
+                        
             const category = categories.find(categorie => categorie.id.toString() === values.category.toString())
             values.category = category
             
-            
+            // Edit project this block 'if'
             if(projectData){
+                const ID = project.id
                 const cost = project.cost
                 const services  = project.services
+                values.id = ID
                 values.cost = cost
                 values.services = services
+                if(values.budget < values.cost){
+                    toast.error('O orçamento não pode ser menor que o custo do projeto!')
+                    return false
+                }
                 return handlePost(values)
-            } //Importante para edição do projeto!!!
+            } //Important for edit the project !!!
 
             values.cost = 0
             values.services=[]

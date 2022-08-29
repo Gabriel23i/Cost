@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom'
 import styles from './ProjectCard.module.css'
 
 import { BsPencil, BsFillTrashFill } from 'react-icons/bs'
-import { useState } from 'react'
-import { useEffect } from 'react'
 
 function ProjectCard({ id, name, budget, category, handleRemove }){
 

@@ -1,11 +1,11 @@
 import { parse, v4 as uuidv4 } from 'uuid'
 
-import { useParams } from 'react-router-dom'
+import {  useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+
 
 import Loading from '../layout/Loading'
 import Container from '../layout/Container'
-import Message from '../layout/Message'
 import ProjectForm from '../project/ProjectForm'
 import ServiceForm from '../service/ServiceForm'
 import ServiceCard from '../service/ServiceCard'
@@ -15,7 +15,7 @@ import styles from './Project.module.css'
 import { toast } from 'react-toastify'
 
 function Project(){
-
+  const navigate = useNavigate()
   const { id } = useParams()
   
   const [project, setProject] = useState([])
@@ -43,15 +43,7 @@ function Project(){
     },300)
   },[id])
 
-  function editPost(project){
-    console.log('project edit: ', project)
-    setMessage('')
-    if(project.budget < project.cost){
-      setMessage('O orçamento não pode ser menor que o custo do projeto!')
-      setType('error')
-      return false
-    }
-    
+  function editPost(project){    
     fetch(`http://localhost:5000/projects/${id}`,{
       method: "PATCH",
       headers:{
@@ -63,15 +55,16 @@ function Project(){
     .then(data => {
       setProject(data)
       setShowProjectForm(false)
-      // setMessage('Projeto atualizado!')
-      // setType('success')
+      navigate('/projects')
       toast.success('Projeto atualizado!')
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      toast.error('Erro ao atualizar projeto!')
+      console.error(error)
+    })
   }
 
   function createService(project){
-    setMessage('')
     //Last service
     const lastService = project.services[project.services.length - 1]
 
@@ -83,9 +76,7 @@ function Project(){
 
     // maximum value validation
     if(newCost > parseFloat(project.budget)){
-      toast.error('Orçamento ultrapassado, verifique o valor do serviço')
-      // setMessage('Orçamento ultrapassado, verifique o valor do serviço')
-      // setType('error')
+      toast.error('Orçamento ultrapassado, verifique o valor do serviço.')
       project.services.pop()
       return false
     }
@@ -104,8 +95,12 @@ function Project(){
     .then(response => response.json())
     .then(data => {
       setShowServiceForm(false)
+      toast.success('Serviço criado com sucesso!')
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      toast.error('Erro na criação do serviço.')
+      console.error(error)
+    })
   }
 
   function removeService(id, cost){
@@ -130,9 +125,12 @@ function Project(){
     .then(data => {
       setProject(projectUpdated)
       setServices(servicesUpdated)
-      setMessage('Serviço removido com sucesso!')
+      toast.success('Serviço removido com sucesso!')
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      toast.error('Erro na remoção do serviço.')
+      console.error(error)
+    })
   }
 
   function toggleProjectForm(){
@@ -148,7 +146,6 @@ function Project(){
     {project.name ? (
       <div className={styles.project_details}>
         <Container customClass="column">
-          {/* {message && <Message type={type} msg={message} />} */}
           <div className={styles.details_container}>
             <h1>Projeto: {project.name}</h1>
             <button
@@ -188,11 +185,13 @@ function Project(){
               {!showServiceForm ? 'Adicionar serviço' : 'Fechar'}
             </button>
             <div className={styles.project_info}>
-              {showServiceForm && <ServiceForm
+              {showServiceForm &&
+                <ServiceForm
                   handleSubmit={createService}
                   btnText="Adicionar Serviço"
                   projectData={project}
-              />}
+                />
+              }
             </div>
           </div>
           <h2>Serviços</h2>
