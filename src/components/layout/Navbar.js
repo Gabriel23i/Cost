@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom"
 
 import Container from "./Container"
+import LogoCost from "./LogoCost"
 
 import style from './Navbar.module.css'
-import logo from '../../img/costs_logo.png'
-
-
 
 function Navbar(){
   return(
     <nav className={style.navbar}>
       <Container>
         <Link to="/">
-          <img src={logo} alt="Logo Cost"/>
+          <LogoCost />
         </Link>
         <ul className={style.list}>
           <li className={style.item}>
