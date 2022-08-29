@@ -25,7 +25,7 @@ function ProjectForm({ projectData, btnText, handlePost }){
             category:project ? project.category.name : ''
         },
         onSubmit:(values)=>{
-                        
+
             const category = categories.find(categorie => categorie.id.toString() === values.category.toString())
             values.category = category
             
@@ -54,7 +54,7 @@ function ProjectForm({ projectData, btnText, handlePost }){
                 },
                 body: JSON.stringify(values)
             })
-            .then(data => {
+            .then(() => {
                 // REDIRECT
                 toast.success('Projeto criado com sucesso!')
                 navigate('/projects')

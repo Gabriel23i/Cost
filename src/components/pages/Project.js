@@ -22,9 +22,6 @@ function Project(){
   const [services, setServices] = useState([])
   const [showProjectForm, setShowProjectForm] = useState(false)
   const [showServiceForm, setShowServiceForm] = useState(false)
-  const [message, setMessage] = useState()
-  const [type, setType] = useState()
-
 
   useEffect(()=>{
     setTimeout(()=>{
@@ -93,7 +90,7 @@ function Project(){
       body: JSON.stringify(project)
     })
     .then(response => response.json())
-    .then(data => {
+    .then(() => {
       setShowServiceForm(false)
       toast.success('Serviço criado com sucesso!')
     })
