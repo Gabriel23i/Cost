@@ -1,18 +1,17 @@
 import { parse, v4 as uuidv4 } from 'uuid'
-
 import {  useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-
+import { toast } from 'react-toastify'
 
 import Loading from '../layout/Loading'
 import Container from '../layout/Container'
 import ProjectForm from '../project/ProjectForm'
 import ServiceForm from '../service/ServiceForm'
 import ServiceCard from '../service/ServiceCard'
+import LinkButton from '../layout/LinkButton'
 
 
 import styles from './Project.module.css'
-import { toast } from 'react-toastify'
 
 function Project(){
   const navigate = useNavigate()
@@ -204,10 +203,12 @@ function Project(){
                   handleRemove={removeService}
                 />
               ))
-              
             }
             {services.length === 0 && <p>Não há serviços cadastrados.</p>}
           </Container>
+            <div className={styles.finalizar}> 
+              <LinkButton to="/projects" text="Finalizar edição"/>
+            </div>
         </Container>
       </div>
       ) : (<Loading />)

@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 import Container from '../layout/Container'
 import Loading from '../layout/Loading'
 import LinkButton from '../layout/LinkButton'
 import ProjectCard from '../project/ProjectCard'
+import BackPage from '../layout/BackPage'
 
 import styles from './Projects.module.css'
-import { toast } from 'react-toastify'
 
 function Projects(){
 
@@ -52,7 +53,8 @@ function Projects(){
 	return (
 		<div className={styles.project_container}>
       <div className={styles.title_container}>
-			  <h1>Meus Projetos</h1>
+        <BackPage to="/" />
+        <h1>Meus Projetos</h1>
         <LinkButton to='/newproject' text='Criar Projeto'/>
       </div>
       <Container customClass="start">

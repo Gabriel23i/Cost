@@ -7,7 +7,7 @@ const LogoCost = () => {
     
     const [classe, setClasse] = useState('')
 
-    function adiciona() {
+    function rotation() {
         setClasse('container_rotate')
         setTimeout(() => {
             setClasse('')
@@ -15,7 +15,7 @@ const LogoCost = () => {
     }
 
     return (
-        <div onClick={adiciona} className={styles.box}>
+        <div onClick={rotation} className={styles.box}>
             <div id="container_id" className={!classe ? styles.container : styles[classe]}>
                 <img id='logo_front' className={styles.logoCostFront} src={logo} alt="logo cost front"/>
             </div>
