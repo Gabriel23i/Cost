@@ -1,8 +1,18 @@
+import BackPage from '../layout/BackPage'
+
+import styles from './Contact.module.css'
+
 function Contact(){
     return (
-        <div>
-            <h1>Contact</h1>
-            <p>Area destined to display company contacts, including social networks.</p>
+        <div className={styles.container}>
+            <div className={styles.content}>
+                <BackPage to="/company" />
+                <h1>Contato</h1>
+                <span></span>
+            </div>
+            <>
+                <p>Area destined to display company contacts.</p>
+            </>
         </div>
     )
 }
