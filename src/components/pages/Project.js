@@ -10,7 +10,6 @@ import ServiceForm from '../service/ServiceForm'
 import ServiceCard from '../service/ServiceCard'
 import LinkButton from '../layout/LinkButton'
 
-
 import styles from './Project.module.css'
 
 function Project(){
@@ -63,11 +62,11 @@ function Project(){
   function createService(project){
     //Last service
     const lastService = project.services[project.services.length - 1]
-
+    
     lastService.id = uuidv4()
 
     const lastServiceCost = lastService.cost 
-
+    
     const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
 
     // maximum value validation
@@ -102,7 +101,7 @@ function Project(){
   function removeService(id, cost){
     const servicesUpdated = project.services.filter(
       (service) => service.id !== id
-    )
+    );
 
     const projectUpdated = project
 
@@ -118,7 +117,7 @@ function Project(){
         JSON.stringify(projectUpdated)
     })
     .then(response => response.json())
-    .then(data => {
+    .then(() => {
       setProject(projectUpdated)
       setServices(servicesUpdated)
       toast.success('Serviço removido com sucesso!')

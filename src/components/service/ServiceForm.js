@@ -1,46 +1,55 @@
-import { useState } from 'react'
+import { useFormik } from 'formik'
 
 import Input from '../form/Input'
 import SubmitButton from '../form/SubmitButton'
 
+import { validate } from '../../utils/validadeServiceForm'
 import styles from '../project/ProjectForm.module.css'
 
 function ServiceForm({ handleSubmit, btnText, projectData }){
 
-  const [service, setService] = useState({})
-  
-  function submit(e){
-    e.preventDefault()
-    projectData.services.push(service)
-    handleSubmit(projectData)
-  }
-
-  function handleChange(e){
-    setService({...service,[e.target.name]: e.target.value})
-  }
+  const formik = useFormik({
+    initialValues:{
+      name:'',
+      cost:0,
+      description:''
+    },
+    validate,
+    onSubmit:({name, cost, description}, {resetForm})=>{
+      projectData.services.push({name, cost, description})
+      handleSubmit(projectData)
+      resetForm()
+    }
+  })
 
   return(
-    <form onSubmit={submit} className={styles.form}>
+    <form onSubmit={formik.handleSubmit} className={styles.form}>
       <Input
         type="text"
         text="Nome do serviço"
         name="name"
         placeholder="Insira o nome do serviço"
-        handleOnChange={handleChange}
+        handleOnChange={formik.handleChange}
+        value={formik.values.name}
+        error={formik.errors.name && formik.touched.name ? <>{formik.errors.name}</>: ''}
       />
        <Input
         type="number"
         text="Custo do serviço"
         name="cost"
         placeholder="Insira o valor total"
-        handleOnChange={handleChange}
+        handleOnChange={formik.handleChange}
+        value={formik.values.cost.placeholder}
+        error={formik.errors.cost && formik.touched.cost ? <>{formik.errors.cost}</>:''}
       />
        <Input
         type="text"
         text="Descrição do serviço"
         name="description"
         placeholder="Descreva o serviço"
-        handleOnChange={handleChange}
+        handleOnChange={formik.handleChange}
+        value={formik.values.description}
+        error={formik.errors.description && formik.touched.description ? <>{formik.errors.description}</>:''}
       />
       <SubmitButton text={btnText}/>
     </form>
