@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import { useFormik } from "formik"
 import { registerSchema } from "../../schema/register"
 
-import Input from '../form/Input'
-import Select from '../form/Select'
-import SubmitButton from '../form/SubmitButton'
+import Input from '../form/input/Input'
+import Select from '../form/select/Select'
+import SubmitButton from '../form/submitButton/SubmitButton'
 
 
 import { useNavigate } from 'react-router-dom'

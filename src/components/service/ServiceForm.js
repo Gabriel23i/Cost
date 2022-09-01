@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 
-import Input from '../form/Input'
-import SubmitButton from '../form/SubmitButton'
+import Input from '../form/input/Input'
+import SubmitButton from '../form/submitButton/SubmitButton'
 
 import { validate } from '../../utils/validadeServiceForm'
 import styles from '../project/ProjectForm.module.css'
