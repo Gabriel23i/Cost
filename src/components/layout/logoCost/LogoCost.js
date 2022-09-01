@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import logo from '../../img/costs_logo.png'
+
+import logo from '../../../img/costs_logo.png'
+
 import styles from './LogoCost.module.css'
 
 const LogoCost = () => {
-    
+
     const [classe, setClasse] = useState('')
 
     function rotation() {

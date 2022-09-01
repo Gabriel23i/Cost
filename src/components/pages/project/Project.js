@@ -3,12 +3,12 @@ import {  useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
-import Loading from '../layout/Loading'
-import Container from '../layout/Container'
-import ProjectForm from '../project/projectForm/ProjectForm'
-import ServiceForm from '../services/ServiceForm'
-import ServiceCard from '../services/ServiceCard'
-import LinkButton from '../layout/LinkButton'
+import Loading from '../../layout/loading/Loading'
+import Container from '../../layout/container/Container'
+import ProjectForm from '../../project/projectForm/ProjectForm'
+import ServiceForm from '../../services/ServiceForm'
+import ServiceCard from '../../services/ServiceCard'
+import LinkButton from '../../layout/linkButton/LinkButton'
 
 import styles from './Project.module.css'
 

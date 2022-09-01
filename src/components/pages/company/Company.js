@@ -1,4 +1,4 @@
-import BackPage from '../layout/BackPage'
+import BackPage from '../../layout/backPage/BackPage'
 
 import styles from './Company.module.css'
 

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 
-import Container from "./Container"
-import LogoCost from "./LogoCost"
+import Container from "../container/Container"
+
+import LogoCost from "../logoCost/LogoCost"
 
 import style from './Navbar.module.css'
 

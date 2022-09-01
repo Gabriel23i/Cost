@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
-import Container from '../layout/Container'
-import Loading from '../layout/Loading'
-import LinkButton from '../layout/LinkButton'
-import ProjectCard from '../project/projectCard/ProjectCard'
-import BackPage from '../layout/BackPage'
+import Container from '../../layout/container/Container'
+import Loading from '../../layout/loading/Loading'
+import LinkButton from '../../layout/linkButton/LinkButton'
+import ProjectCard from '../../project/projectCard/ProjectCard'
+import BackPage from '../../layout/backPage/BackPage'
 
 import styles from './Projects.module.css'
 
