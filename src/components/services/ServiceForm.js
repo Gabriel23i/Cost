@@ -4,7 +4,8 @@ import Input from '../form/input/Input'
 import SubmitButton from '../form/submitButton/SubmitButton'
 
 import { validate } from '../../utils/validadeServiceForm'
-import styles from '../project/ProjectForm.module.css'
+
+import styles from '../project/projectCard/ProjectCard.module.css'
 
 function ServiceForm({ handleSubmit, btnText, projectData }){
 

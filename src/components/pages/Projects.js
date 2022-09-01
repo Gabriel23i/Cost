@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import Container from '../layout/Container'
 import Loading from '../layout/Loading'
 import LinkButton from '../layout/LinkButton'
-import ProjectCard from '../project/ProjectCard'
+import ProjectCard from '../project/projectCard/ProjectCard'
 import BackPage from '../layout/BackPage'
 
 import styles from './Projects.module.css'

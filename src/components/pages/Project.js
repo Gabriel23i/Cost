@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 
 import Loading from '../layout/Loading'
 import Container from '../layout/Container'
-import ProjectForm from '../project/ProjectForm'
+import ProjectForm from '../project/projectForm/ProjectForm'
 import ServiceForm from '../services/ServiceForm'
 import ServiceCard from '../services/ServiceCard'
 import LinkButton from '../layout/LinkButton'
