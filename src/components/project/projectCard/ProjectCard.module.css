@@ -85,3 +85,27 @@
   color: #ffbb33;
 }
 
+.form {
+  width: 100%;
+  margin: 2em 0;
+  border: 1px solid #7b7b7b;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form input {
+  border: 1px solid #7b7b7b;
+}
+
+.form input::placeholder {
+  color: #000;
+}
+
+.form select {
+  border: 1px solid #7b7b7b;
+}
+
+.form div {
+  display: flex;
+  justify-content: center;
+}

@@ -24,10 +24,10 @@ function ProjectForm({ projectData, btnText, handlePost }){
         initialValues:{
             name:project ? project.name : '',
             budget:project ? project.budget : '',
-            category:project ? project.category.name : ''
+            category:project ? project.category.id : ''
         },
         onSubmit:(values)=>{
-            
+
             const category = categories.find(categorie => categorie.id.toString() === values.category.toString())
             values.category = category
             
