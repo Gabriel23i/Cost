@@ -3,6 +3,9 @@ import {  useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
+import { axios } from '../../../api/axios'
+import { URLS } from '../../../api/urls'
+
 import Loading from '../../layout/loading/Loading'
 import Container from '../../layout/container/Container'
 import ProjectForm from '../../project/projectForm/ProjectForm'
@@ -15,40 +18,27 @@ import styles from './Project.module.css'
 function Project(){
   const navigate = useNavigate()
   const { id } = useParams()
-  
+
   const [project, setProject] = useState([])
   const [services, setServices] = useState([])
   const [showProjectForm, setShowProjectForm] = useState(false)
   const [showServiceForm, setShowServiceForm] = useState(false)
 
   useEffect(()=>{
-    setTimeout(()=>{
-      fetch(`http://localhost:5000/projects/${id}`, {
-        method:"GET",
-        headers:{
-          "Content-Type":"application/json",
-        },
+    setTimeout(() => {
+      axios.get(`${URLS.projects}/${id}`)
+      .then(response => {
+        setProject(response.data)
+        setServices(response.data.services)
       })
-      .then(response => response.json())
-      .then(data =>{
-        setProject(data)
-        setServices(data.services)
-      })
-      .catch(error => console.error(error))  
-    },300)
+      .catch(error => console.error(error))
+    }, 300);
   },[id])
 
-  function editPost(project){    
-    fetch(`http://localhost:5000/projects/${id}`,{
-      method: "PATCH",
-      headers:{
-        "Content-Type":"application/json",
-      },
-      body:JSON.stringify(project),
-    })
-    .then(response => response.json())
-    .then(data => {
-      setProject(data)
+  function editPost(project){
+    axios.patch(`${URLS.projects}/${id}`, project)
+    .then((response)=>{
+      setProject(response.data)
       setShowProjectForm(false)
       navigate('/projects')
       toast.success('Projeto atualizado!')
@@ -62,7 +52,6 @@ function Project(){
   function createService(project){
     //Last service
     const lastService = project.services[project.services.length - 1]
-    
     lastService.id = uuidv4()
 
     const lastServiceCost = lastService.cost 
@@ -80,22 +69,15 @@ function Project(){
     project.cost = newCost
 
     //update project 
-    fetch(`http://localhost:5000/projects/${project.id}`,{
-      method:"PATCH",
-      headers:{
-        "Content-Type":"application/json",
-      },
-      body: JSON.stringify(project)
-    })
-    .then(response => response.json())
-    .then(() => {
+    axios.patch(`${URLS.projects}/${project.id}`, project)
+    .then(()=>{
       setShowServiceForm(false)
       toast.success('Serviço criado com sucesso!')
     })
     .catch(error => {
       toast.error('Erro na criação do serviço.')
       console.error(error)
-    })
+    })    
   }
 
   function removeService(id, cost){
@@ -107,17 +89,9 @@ function Project(){
 
     projectUpdated.services = servicesUpdated
     projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
-
-    fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
-      method: "PATCH",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:
-        JSON.stringify(projectUpdated)
-    })
-    .then(response => response.json())
-    .then(() => {
+    
+    axios.patch(`${URLS.projects}/${projectUpdated.id}`, projectUpdated)
+    .then(()=>{
       setProject(projectUpdated)
       setServices(servicesUpdated)
       toast.success('Serviço removido com sucesso!')

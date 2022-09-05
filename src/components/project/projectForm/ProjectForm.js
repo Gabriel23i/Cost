@@ -5,6 +5,8 @@ import { useFormik } from "formik"
 import { toast } from 'react-toastify'
 
 import { registerSchema } from "../../../schema/register"
+import { axios } from '../../../api/axios'
+import { URLS } from '../../../api/urls'
 
 import Input from '../../form/input/Input'
 import Select from '../../form/select/Select'
@@ -47,15 +49,8 @@ function ProjectForm({ projectData, btnText, handlePost }){
             values.cost = 0
             values.services=[]
 
-            fetch("http://localhost:5000/projects",{
-                method:"POST",
-                headers:{
-                    "Content-type":"application/json",
-                },
-                body: JSON.stringify(values)
-            })
+            axios.post(URLS.projects, values)
             .then(() => {
-                // REDIRECT
                 toast.success('Projeto criado com sucesso!')
                 navigate('/projects')
             })
@@ -68,18 +63,10 @@ function ProjectForm({ projectData, btnText, handlePost }){
     });
 
     useEffect(()=>{
-        fetch('http://localhost:5000/categories', {
-            method:"GET",
-            headers:{
-                "Content-type":"application/json",
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            setCategories(data)
-        })
+        axios.get(URLS.categories)
+        .then((response)=>setCategories(response.data))
         .catch(error => console.error(error))
-    },[]);
+    },[])
 
     return(
         <form onSubmit={formik.handleSubmit} className={style.form}>

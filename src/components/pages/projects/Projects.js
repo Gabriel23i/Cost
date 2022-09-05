@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
+import { axios } from '../../../api/axios'
+import { URLS } from '../../../api/urls'
+
 import Container from '../../layout/container/Container'
 import Loading from '../../layout/loading/Loading'
 import LinkButton from '../../layout/linkButton/LinkButton'
@@ -10,37 +13,23 @@ import BackPage from '../../layout/backPage/BackPage'
 import styles from './Projects.module.css'
 
 function Projects(){
-
 	const [projects, setProjects] = useState([])
 	const [removeLoading, setRemoveLoading] = useState(false)
 
-	useEffect(()=>{
-    setTimeout(()=>{
-      fetch('http://localhost:5000/projects',{
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-        setProjects(data)
+  useEffect(()=>{
+    setTimeout(() => {
+      axios.get(URLS.projects)
+      .then((response)=>{
+        setProjects(response.data)
         setRemoveLoading(true)
-      }).catch((error) => console.error(error))
-    },300)
-	},[])
+      })
+      .catch((error)=>console.error(error))
+    }, 300);
+  },[])
 
   function removeProject(id){
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: "DELETE",
-      headers:{
-        "Content-Type":"application/json",
-      },
-    })
-    .then(response => response.json())
-    // Como DATA não vai ser usado pode ser func. anonymus
-    .then(() => {
-      //Está retornando para o proprio array o que for diferente do id passado
+    axios.delete(`${URLS.projects}/${id}`)
+    .then(()=>{
       setProjects(projects.filter(project => project.id !== id))
       toast.success('Projeto removido com sucesso!')
     })
