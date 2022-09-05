@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react'
 
+import { useNavigate } from 'react-router-dom'
 import { useFormik } from "formik"
+import { toast } from 'react-toastify'
+
 import { registerSchema } from "../../../schema/register"
 
 import Input from '../../form/input/Input'
 import Select from '../../form/select/Select'
 import SubmitButton from '../../form/submitButton/SubmitButton'
 
-
-import { useNavigate } from 'react-router-dom'
-
 import style from './ProjectForm.module.css'
-import { toast } from 'react-toastify'
 
 function ProjectForm({ projectData, btnText, handlePost }){
-    const [categories, setCategories] = useState([])
-    const [project] = useState(projectData)
-    const navigate = useNavigate()
+    const [categories, setCategories] = useState([]);
+    const [project] = useState(projectData);
+    
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues:{
@@ -25,7 +25,7 @@ function ProjectForm({ projectData, btnText, handlePost }){
             category:project ? project.category.name : ''
         },
         onSubmit:(values)=>{
-
+            
             const category = categories.find(categorie => categorie.id.toString() === values.category.toString())
             values.category = category
             
@@ -65,7 +65,7 @@ function ProjectForm({ projectData, btnText, handlePost }){
             })
         },
         validationSchema:registerSchema
-    })
+    });
 
     useEffect(()=>{
         fetch('http://localhost:5000/categories', {
@@ -79,7 +79,7 @@ function ProjectForm({ projectData, btnText, handlePost }){
             setCategories(data)
         })
         .catch(error => console.error(error))
-    },[])
+    },[]);
 
     return(
         <form onSubmit={formik.handleSubmit} className={style.form}>
@@ -103,13 +103,15 @@ function ProjectForm({ projectData, btnText, handlePost }){
             />
             <Select
                 name="category"
-                text="Selecione a categoria"
+                text="Categoria do projeto"
                 options={categories}
                 handleOnChange={formik.handleChange}
                 value={formik.values.category}
                 error={formik.errors.category && formik.touched.category && <>{formik.errors.category}</>}
             />
-            <SubmitButton text={btnText} />
+            <div>
+                <SubmitButton text={btnText} />
+            </div>
         </form>
     )
 }

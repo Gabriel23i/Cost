@@ -1,7 +1,12 @@
 .newproject_container {
-    width: 450px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
     margin: 0 auto;
     padding: 3em;
+    height:82vh;
 }
 
 .newproject_container h1 {

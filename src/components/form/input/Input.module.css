@@ -16,10 +16,6 @@
     border-radius: 5px;
 }
 
-.form_control input::placeholder {
-    color: #7b7b7b;
-}
-
 .form_control span {
     font-size: 14px;
     margin-top: 0.25rem;

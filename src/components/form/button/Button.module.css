@@ -1,4 +1,4 @@
-.btn {
+.button {
     background-color: #222;
     color: #fff;
     padding: 0.4em 1.2em;
@@ -9,6 +9,6 @@
     border-radius: 5px;
 }
 
-.btn:hover {
+.button:hover {
     color: #ffbb23;
 }

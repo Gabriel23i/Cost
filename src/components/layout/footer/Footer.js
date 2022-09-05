@@ -10,10 +10,12 @@ function Footer(){
                     <FaFacebook />
                 </li>
                 <li>
+                    <a target="_blank" href="https://www.instagram.com/gabrieldevx/">
                     <FaInstagram />
+                    </a>
                 </li>
                 <li>
-                    <a target="_blank" href='https://www.linkedin.com/in/gabriel-santos-23352a20a/'>
+                    <a target="_blank" href="https://www.linkedin.com/in/gabriel-santos-23352a20a/">
                         <FaLinkedin />
                     </a>
                 </li>
